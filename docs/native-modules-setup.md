@@ -9,29 +9,38 @@ title: Native Module Setup
 > - [Native Module Sample in `microsoft/react-native-windows-samples`](https://github.com/microsoft/react-native-windows-samples/tree/main/samples/NativeModuleSample)
 > - [Sample App in `microsoft/react-native-windows/packages/microsoft-reactnative-sampleapps`](https://github.com/microsoft/react-native-windows/tree/main/packages/sample-apps)
 
-This guide will help set you up with the Visual Studio infrastructure to author your own stand-alone native module for React Native Windows. In this document we'll be creating the scaffolding for a `NativeModuleSample` native module.
+This guide will set you up with our recommendations for authoring a native module for React Native for Windows. After completing this setup, you should be able to answer these three questions:
+
+1. *Where* do I define the the API surface for my native module?
+1. *Where* do I need to implement the native code so it's available at runtime?
+2. *Where* can I implement any TS/JS to wrap the native module's API?
+
+With these questions answered, you should be ready to start implementing the native module you wish to expose to your React Native for Windows app.
 
 ## Development Environment
 
-Make sure you have installed all of the [development dependencies](rnw-dependencies.md).
+First, make sure you have installed all of the [React Native for Windows development dependencies](rnw-dependencies.md).
 
 ## Choose your own adventure
 
-Once your development environment has been correctly configured, you have several options about how to access native APIs. You can either:
+Once your development environment has been correctly configured, next you need to choose *where* your native module will live. You have three main options:
 
-- [Reference the APIs directly from within a React Native for Windows project](#referencing-windows-apis-within-a-react-native-for-windows-app-project)
-- [Create a new native module library that can be distributed separately from your app](#creating-a-new-native-module-library-project)
+- [Create a native module within your React Native for Windows app project](#referencing-windows-apis-within-a-react-native-for-windows-app-project)
+- [Create an independent native module library that can be used by multiple apps](#creating-a-new-native-module-library-project)
 - [Add Windows support to an existing community library](#adding-windows-support-to-an-existing-library)
 
 ## Referencing Windows APIs within a React Native for Windows app project
 
-If you are only planning on adding a native module to your existing React Native Windows app, i.e.:
+The quickest route to exposing native functionality to your React Native for Windows app is often to just create a new native module within your existing app project.
+
+That is, assuming:
 
 1. You followed the [Getting Started](getting-started.md) guide, where
-1. You used the [init-windows command](init-windows-cli.md) to add Windows to your project, and
-1. You are just adding your native code to the app project under the `windows` folder.
+1. You used the `@react-native-community/cli init` command to create a new React Native app, and
+1. You used the [init-windows command](init-windows-cli.md) to add Windows to your project
+1. You're 
 
-Then you can simply open the Visual Studio solution in the `windows` folder and add the new files directly to the app project.
+Then you should be already can simply open the Visual Studio solution in the `windows` folder and add the new files directly to the app project.
 
 ## Creating a new native module library project
 
